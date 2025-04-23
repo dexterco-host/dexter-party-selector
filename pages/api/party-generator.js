@@ -17,34 +17,33 @@ export default async function handler(req, res) {
   }
 
   const prompt = `
-You are a cannabis hospitality expert at Dexter Co. Based on the following inputs, create a custom cannabis party plan in the brand’s tone (Southern charm, cheeky sophistication, no stoner clichés). Include all sections and tailor them to the vibe:
+You are a cannabis party planning assistant for Dexter Co. Create a themed party plan with the following details:
+- Host name: ${name}
+- Email: ${email}
+- Guests: ${guests}
+- State: ${state}
+- Home Zip: ${homeZip}
+- Event Zip: ${eventZip}
+- Party Vibe: ${vibe}
+- Description: ${description}
 
-Name: ${name}
-State: ${state}
-Home Zip: ${homeZip}
-Event Zip: ${eventZip}
-Guest Count: ${guests}
-Party Vibe: ${vibe}
-Description: ${description}
+Your response should include:
+1. A clever name for the party
+2. A short paragraph describing the theme
+3. Recommended House of Kush cannabis strain (based on state and vibe)
+4. A brief explanation of why that strain works
+5. Gummy pairing suggestion
+6. Serving style (tray, glass, etc.)
+7. Food suggestion
+8. Two wine pairings (one red, one white)
+9. Two cocktails
+10. Two non-alcoholic drinks
+11. Music playlist theme
+12. Scent recommendation (candles/incense)
+13. Lighting vibe (e.g., warm, colorful, soft)
+14. Any recommended Dexter Co. product presentation ideas (linked if possible)
 
-Return as JSON with:
-{
-  partyName,
-  description,
-  strain,
-  effect,
-  strainReason,
-  gummy,
-  servingStyle,
-  food,
-  winePairings,
-  cocktails,
-  nonAlcoholicDrinks,
-  music,
-  scent,
-  lighting,
-  recommendedProducts
-}
+Tone: Refined, cheeky, Southern Hospitality meets boutique cannabis concierge.
 `;
 
   try {
@@ -53,12 +52,10 @@ Return as JSON with:
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const responseText = completion.data.choices[0].message.content;
-    const result = JSON.parse(responseText);
-    return res.status(200).json(result);
+    const result = completion.data.choices[0].message.content;
+    res.status(200).json({ plan: result });
   } catch (err) {
-    console.error('OpenAI error:', err);
-    return res.status(500).json({ error: 'Something went wrong generating your party plan' });
+    console.error('OpenAI API error:', err);
+    res.status(500).json({ error: 'Failed to generate party plan' });
   }
 }
-
