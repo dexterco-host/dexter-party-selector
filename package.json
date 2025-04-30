@@ -12,5 +12,23 @@
     "openai": "^4.96.0",
     "react": "latest",
     "react-dom": "latest"
-  }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4"
+  },
+  "description": "This is the starter project for your Vercel deployment.",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dexterco-host/dexter-party-selector.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dexterco-host/dexter-party-selector/issues"
+  },
+  "homepage": "https://github.com/dexterco-host/dexter-party-selector#readme"
 }

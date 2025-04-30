@@ -6,6 +6,8 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
+  console.log("🎉 Hit the party-generator API endpoint");
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -52,10 +54,12 @@ Tone: Refined, cheeky, Southern Hospitality meets boutique cannabis concierge.
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const result = completion.data.choices[0].message.content;
-    res.status(200).json({ plan: result });
-  } catch (err) {
-    console.error('OpenAI API error:', err);
+    const response = completion.data.choices[0].message.content;
+    console.log("📝 AI Response:", response);
+    res.status(200).json({ plan: response });
+
+  } catch (error) {
+    console.error("🔥 Error generating plan:", error);
     res.status(500).json({ error: 'Failed to generate party plan' });
   }
 }
