@@ -27,10 +27,5 @@
   "bugs": {
     "url": "https://github.com/dexterco-host/dexter-party-selector/issues"
   },
-  "homepage": "https://github.com/dexterco-host/dexter-party-selector#readme",
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4"
-  }
+  "homepage": "https://github.com/dexterco-host/dexter-party-selector#readme"
 }
